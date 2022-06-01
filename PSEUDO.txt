@@ -1,3 +1,52 @@
-Use Bootstrap to create layout for html 
-get Inquirer and jest installed
-start writing tests 
+1st class is Employee as the parent class:
+name
+id
+email
+
+getName()
+getId()
+getEmail()
+getRole()—returns 'Employee'
+
+2nd class is Manager:
+name
+id
+email
+**officeNumber
+
+getOfficeNumber() --> not sure if i need this but added it in
+getName()
+getId()
+getEmail()
+**getRole()—overridden to return 'Manager'
+
+3rd class is Engineer:
+name
+id
+email
+**github—GitHub username
+
+getName()
+getId()
+getEmail()
+**getGithub()
+**getRole()—overridden to return 'Engineer'
+
+4th class is Intern:
+name
+id
+email
+**school
+
+getName()
+getId()
+getEmail()
+**getSchool()
+**getRole()—overridden to return 'Intern'
+
+
+
+For ReadMe: My task was to build a Node.js command-line application that takes in information about employees on a software engineering team, then generates an HTML webpage that displays summaries for each person. I wrote a test for every part of my code and ensured it all passed.
+I used the Jest library to run the tests created. I used the Inquirer library to collect input from the user and display the profiles according to the input. 
+Jest and Inquirer are involed by using the following command: 
+node index.js
