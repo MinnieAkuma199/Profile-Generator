@@ -1,23 +1,9 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-
-//making classes should i put these in functions so that i can call in inquirer prompt below??
-class Employee {
-  constructor(name, id, email) {
-    this.name = name;
-    this.id = id;
-    this.email = email;
-  }
-  getName() {}
-  getId() {}
-  getEmail() {}
-  getRole() {}
-}
-class Manager {}
-
-class Engineer {}
-
-class Intern {}
+const Employee = require("./lib/employee");
+const Manager = require("./lib/manager");
+const Engineer = require("./lib/engineer");
+const Intern = require("./lib/intern");
 
 inquirer
   .prompt([
