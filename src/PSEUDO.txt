@@ -1,3 +1,14 @@
+Get prompt to loop until user says they dont want anymore options so maybe a boolean value paired with an if statement 
+
+I want prompts to ask certain questions depending if engineer, manager, or intern is selected
+
+I want my html to append correctly to actually build the webpage once user puts in input
+
+What is the point of the classes, how will they be used here?
+
+** Need to start building tests! **
+
+Am i making a new js for every class???
 1st class is Employee as the parent class:
 name
 id
@@ -44,9 +55,3 @@ getEmail()
 **getSchool()
 **getRole()—overridden to return 'Intern'
 
-
-
-For ReadMe: My task was to build a Node.js command-line application that takes in information about employees on a software engineering team, then generates an HTML webpage that displays summaries for each person. I wrote a test for every part of my code and ensured it all passed.
-I used the Jest library to run the tests created. I used the Inquirer library to collect input from the user and display the profiles according to the input. 
-Jest and Inquirer are involed by using the following command: 
-node index.js

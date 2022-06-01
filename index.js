@@ -1,23 +1,23 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
-//making classes should i put these in functions so that i can call in inquirer prompt below?
-// class Employee {
-//   constructor(name, id, email) {
-//     this.name = name;
-//     this.id = id;
-//     this.email = email;
-//   }
-//   getName() {}
-//   getId() {}
-//   getEmail() {}
-//   getRole() {}
-// }
-// class Manager {}
+//making classes should i put these in functions so that i can call in inquirer prompt below??
+class Employee {
+  constructor(name, id, email) {
+    this.name = name;
+    this.id = id;
+    this.email = email;
+  }
+  getName() {}
+  getId() {}
+  getEmail() {}
+  getRole() {}
+}
+class Manager {}
 
-// class Engineer {}
+class Engineer {}
 
-// class Intern {}
+class Intern {}
 
 inquirer
   .prompt([
@@ -43,16 +43,19 @@ inquirer
       name: "role",
     }, //is there something i can do to only get select questions depending on what is selected?
     {
+      //if statment? manager, should i make a function for user choice and call it here?
       type: "input",
       message: "What is the employee's office number?",
       name: "officeNumber",
     },
     {
+      //if statement engineer
       type: "input",
       message: "What is the employee's github username?",
       name: "gitHub",
     },
     {
+      //if statment intern
       type: "input",
       message: "What school does the employee go to?",
       name: "school",
