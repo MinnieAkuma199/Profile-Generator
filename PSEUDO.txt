@@ -1,0 +1,3 @@
+Use Bootstrap to create layout for html 
+get Inquirer and jest installed
+start writing tests 
