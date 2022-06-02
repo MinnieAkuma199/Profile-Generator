@@ -7,8 +7,14 @@ I want my html to append correctly to actually build the webpage once user puts 
 What is the point of the classes, how will they be used here?
 
 ** Need to start building tests! **
+for employee: 
+testing for class Employee
+it('Does it create an object')
+keys:name, id, email 
+Does it set the keys 
+test for the methods and thats it
 
-Am i making a new js for every class???
+--New JS for every class created--
 1st class is Employee as the parent class:
 name
 id

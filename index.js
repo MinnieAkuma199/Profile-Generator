@@ -1,54 +1,199 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-const Employee = require("./lib/employee");
 const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 
-inquirer
-  .prompt([
-    {
-      type: "input",
-      message: "What is the employee's name?",
-      name: "name",
-    },
-    {
-      type: "input",
-      message: "What is the employee's ID #?",
-      name: "id",
-    },
-    {
-      type: "input",
-      message: "What is the employee's email?",
-      name: "email",
-    },
-    {
-      type: "list",
-      message: "Employees role?",
-      choices: ["Manager", "Engineer", "Intern"],
-      name: "role",
-    }, //is there something i can do to only get select questions depending on what is selected?
-    {
-      //if statment? manager, should i make a function for user choice and call it here?
-      type: "input",
-      message: "What is the employee's office number?",
-      name: "officeNumber",
-    },
-    {
-      //if statement engineer
-      type: "input",
-      message: "What is the employee's github username?",
-      name: "gitHub",
-    },
-    {
-      //if statment intern
-      type: "input",
-      message: "What school does the employee go to?",
-      name: "school",
-    },
-  ])
-  .then((response) => {
-    const templateHTML1 = `<!DOCTYPE html>
+const employees = [];
+function managerQuestions() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is the manager's name?",
+        name: "name",
+      },
+      {
+        type: "input",
+        message: "What is the manager's ID #?",
+        name: "id",
+      },
+      {
+        type: "input",
+        message: "What is the manager's email?",
+        name: "email",
+      },
+      {
+        type: "input",
+        message: "What is the manager's office number?",
+        name: "officeNumber",
+      },
+    ])
+    .then((response) => {
+      const newManager = new Manager(
+        response.name,
+        response.id,
+        response.email,
+        response.officeNumber
+      );
+      employees.push(newManager);
+      addTeamMember();
+    });
+}
+function generateManagerCard(manager) {
+  const templateManager = `        <div class="card manager mt-3" style="width: 18rem;">
+            <div class="card-block">
+                <h5 class="card-title">${manager.name}</h5>
+                <h6 class="card-title">${manager.getRole()}</h6>
+                <div class="card" style="width: 18rem;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">ID: ${manager.id} </li>
+                        <li class="list-group-item"> Email: <a href="mailto:${
+                          manager.email
+                        }" class="card-link">${manager.email}</a></li>
+                        <li class="list-group-item">Office number: ${
+                          manager.officeNumber
+                        } </li>
+                    </ul>
+                </div>
+            </div>
+        </div>`;
+  return templateManager;
+}
+function addTeamMember() {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        message: "Would you like to add another member of the team?",
+        choices: ["Engineer", "Intern", "FINISHED"],
+        name: "newTeamMember",
+      },
+    ])
+    .then(({ newTeamMember }) => {
+      if (newTeamMember === "Engineer") {
+        inquirer
+          .prompt([
+            {
+              type: "input",
+              message: "What is the engineer's name?",
+              name: "ename",
+            },
+            {
+              type: "input",
+              message: "What is the engineer's ID #?",
+              name: "eid",
+            },
+            {
+              type: "input",
+              message: "What is the engineer's email?",
+              name: "eemail",
+            },
+            {
+              type: "input",
+              message: "What is the engineer's github username?",
+              name: "egitHub",
+            },
+          ])
+          .then((eAnswers) => {
+            const newEngineer = new Engineer(
+              eAnswers.ename,
+              eAnswers.eid,
+              eAnswers.eemail,
+              eAnswers.egitHub
+            );
+
+            employees.push(newEngineer);
+            addTeamMember();
+          });
+      } else if (newTeamMember === "Intern") {
+        inquirer
+          .prompt([
+            {
+              type: "input",
+              message: "What is the intern's name?",
+              name: "iname",
+            },
+            {
+              type: "input",
+              message: "What is the intern's ID #?",
+              name: "iid",
+            },
+            {
+              type: "input",
+              message: "What is the intern's email?",
+              name: "iemail",
+            },
+            {
+              type: "input",
+              message: "What school does the intern go to?",
+              name: "school",
+            },
+          ])
+          .then((iAnswers) => {
+            const newIntern = new Intern(
+              iAnswers.iname,
+              iAnswers.iid,
+              iAnswers.iemail,
+              iAnswers.school
+            );
+
+            employees.push(newIntern);
+            addTeamMember();
+          });
+      } else {
+        console.log(employees);
+        fs.writeFile("index.html", HTMLGenerator(employees), (err) => {
+          err ? console.error(err) : console.log("You did it!");
+        });
+      }
+    });
+}
+
+function generateEngineerCard(engineer) {
+  const templateEngineer = `       <div class="card engineer mt-3" style="width: 18rem;">
+            <div class="card-block">
+                <h5 class="card-title">${engineer.name}</h5>
+                <h6 class="card-title">${engineer.getRole()}</h6>
+                <div class="card" style="width: 18rem;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">ID: ${engineer.id}</li>
+                        <li class="list-group-item"> Email: <a href="mailto:${
+                          engineer.email
+                        }" class="card-link">${engineer.email}</a></li>
+                        <li class="list-group-item"> GitHub: <a href="https://github.com/${
+                          engineer.gitHub
+                        }" class="card-link"> https://github.com/${
+    engineer.gitHub
+  }</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>`;
+  return templateEngineer;
+}
+function generateInternCard(intern) {
+  const templateIntern = `    <div class="card intern mt-3" style="width: 18rem;">
+            <div class="card-block">
+                <h5 class="card-title">${intern.name}</h5>
+                <h6 class="card-title">${intern.getRole()}</h6>
+                <div class="card" style="width: 18rem;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">ID: ${intern.id} </li>
+                        <li class="list-group-item"> Email: <a href="mailto:${
+                          intern.email
+                        }" class="card-link">${intern.email}</a></li>
+                        <li class="list-group-item"> School: ${
+                          intern.school
+                        } </li>
+                    </ul>
+                </div>
+            </div>
+        </div>`;
+  return templateIntern;
+}
+function HTMLGenerator(employee) {
+  let templateHTML1 = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -59,7 +204,7 @@ inquirer
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
             crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="./style.css" />
+         <link rel="stylesheet" type="text/css" href="./dist/style.css" />
     <title>Profile-Generator</title>
 </head>
 <body>
@@ -71,69 +216,22 @@ inquirer
     </div>
     <div class="container">
 `;
-    const templateHTML2 = `    </div>
+  const templateHTML2 = `    </div>
 <footer> Kristyn D. Web Productions© </footer>
 </body>
 </html>`;
+  //creating cards and adding to the html
+  for (let i = 0; i < employee.length; i++) {
+    if (employee[i].getRole() === "Manager") {
+      templateHTML1 += generateManagerCard(employee[i]);
+    } else if (employee[i].getRole() === "Engineer") {
+      templateHTML1 += generateEngineerCard(employee[i]);
+    } else if (employee[i].getRole() === "Intern") {
+      templateHTML1 += generateInternCard(employee[i]);
+    }
+  }
+  templateHTML1 += templateHTML2;
+  return templateHTML1;
+}
 
-    //but how will i make this based on my html i created? i want these cards to enter my html i created based off of user selection
-    const templateManager = `        <div class="card manager mt-3" style="width: 18rem;">
-            <div class="card-block">
-                <h5 class="card-title">${response.name}</h5>
-                <h6 class="card-title">${response.role}</h6>
-                <div class="card" style="width: 18rem;">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID: ${response.id} </li>
-                        <li class="list-group-item"> Email: <a href="#" class="card-link">${response.email}</a></li>
-                        <li class="list-group-item">Office number: ${response.officeNumber} </li>
-                    </ul>
-                </div>
-            </div>
-        </div>`;
-    const templateEngineer = `       <div class="card engineer mt-3" style="width: 18rem;">
-            <div class="card-block">
-                <h5 class="card-title">${response.name}</h5>
-                <h6 class="card-title">${response.role}</h6>
-                <div class="card" style="width: 18rem;">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID: ${response.id}</li>
-                        <li class="list-group-item"> Email: <a href="#" class="card-link">${response.email}</a></li>
-                        <li class="list-group-item"> GitHub: <a href="#" class="card-link">https://github.com/${response.gitHub}</a></li>
-                    </ul>
-                </div>
-                
-                
-            </div>
-        </div>`;
-    const templateIntern = `        <div class="card intern mt-3" style="width: 18rem;">
-            <div class="card-block">
-                <h5 class="card-title">${response.name}</h5>
-                <h6 class="card-title">${response.role}</h6>
-                <div class="card" style="width: 18rem;">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID: ${response.id} </li>
-                        <li class="list-group-item"> Email: <a href="#" class="card-link">${response.email}</a></li>
-                        <li class="list-group-item"> School: ${response.school} </li>
-                    </ul>
-                </div>
-
-
-            </div>
-        
-        
-        </div>`;
-    //trying to append it all together
-    var fsWriter = fs.createWriteStream(
-      "README.md",
-      {
-        flags: templateHTML1,
-      },
-      fs.write(templateManager),
-      fs.write(templateEngineer),
-      fs.write(templateIntern),
-      fs.write(templateHTML2)
-    );
-    fs.writeFile("index.html", fsWriter, (err) => {
-      err ? console.error(err) : console.log("You did it!");
-    });
-  });
+managerQuestions();
