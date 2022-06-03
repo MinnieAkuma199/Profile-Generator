@@ -27,7 +27,7 @@ npm i
 
 ### Usage
 
-![alt text](/Profile-Generator/assets/screencastify.gif)
+![alt text](/Profile-Generator/screencastify.gif)
 
 https://drive.google.com/file/d/1gL9vhOhiQ5rNkwI0tRZSJDoYo8MrgvMS/view
 
