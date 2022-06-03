@@ -4,9 +4,9 @@
 
 ## Description
 
--My task was to build a Node.js command-line application that takes in information about employees on a software engineering team, then generates an HTML webpage that displays summaries for each person. I wrote a test for every part of my code and ensured it all passed.
+My task was to build a Node.js command-line application that takes in information about employees on a software engineering team, then generates an HTML webpage that displays summaries for each employee input. I wrote a test for the constructor classes created to ensure they were passing in the values I wanted correctly.
 
--I learned how to use Jest to write tests and specifically worked with command line interfaces more.
+I learned how to use Jest to write tests and specifically continued working with command line interfaces. The video linked under [Usage](#usage) demonstrates functionality and passing of all tests created.
 
 ## Table of Contents
 
@@ -27,7 +27,9 @@ npm i
 
 ### Usage
 
-![alt text](assets/)
+![alt text](/Profile-Generator/assets/screencastify.gif)
+
+https://drive.google.com/file/d/1gL9vhOhiQ5rNkwI0tRZSJDoYo8MrgvMS/view
 
 ### Contributors
 
