@@ -4,12 +4,13 @@
 
 ## Description
 
-My task was to build a Node.js command-line application that takes in information about employees on a software engineering team, then generates an HTML webpage that displays summaries for each employee input. I wrote a test for the constructor classes created to ensure they were passing in the values I wanted correctly.
+- Employers need to have an way to easily add information about employees and to see it displayed dynamically. I built a Node.js command-line application that takes in information about employees on a software engineering team, then generates an HTML webpage that displays summaries for each employee input.
 
-I learned how to use Jest to write tests and specifically continued working with command line interfaces. The video linked under [Usage](#usage) demonstrates functionality and passing of all tests created.
+- I wrote a test for the constructor classes created to ensure they were passing in the values I wanted correctly. Through this I learned how to use Jest to write tests and specifically continued working with command line interfaces. The video linked under [Usage](#usage) demonstrates functionality and passing of all tests created.
 
 ## Table of Contents
 
+- [Technology-Used](#technology-used)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributors](#contributors)
@@ -17,9 +18,13 @@ I learned how to use Jest to write tests and specifically continued working with
 - [Tests](#tests)
 - [Additional Questions](#additional-questions)
 
+### Technology Used
+
+Tech Used: Jest, Inquirer, Node, JavaScript, HTML
+
 ### Installation
 
-Jest and Inquirer are installed by using the following command:
+All dependencies are installed by using the following command:
 
 ```md
 npm i
@@ -27,7 +32,7 @@ npm i
 
 ### Usage
 
-![alt text](/Profile-Generator/screencastify.gif)
+![alt text](/Profile-Generator/assets/screencastify.gif)
 
 https://drive.google.com/file/d/1gL9vhOhiQ5rNkwI0tRZSJDoYo8MrgvMS/view
 
