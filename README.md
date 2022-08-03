@@ -34,6 +34,8 @@ npm i
 
 [LINK to Video of the Functionality of App](https://drive.google.com/file/d/1gL9vhOhiQ5rNkwI0tRZSJDoYo8MrgvMS/view)
 
+
+
 ![alt text](/Profile-Generator/assets/screencastify.gif)
 
 ### Contributors
